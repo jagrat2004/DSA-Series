@@ -23,11 +23,6 @@ g++ path/to/file.cpp -o path/to/file.exe
 ./path/to/file.exe
 ```
 
-## Notes
-
-- The repository contains both source `.cpp` files and some compiled `.exe` artifacts.
-- Remove generated binaries before sharing the repository if you want a clean source-only version.
-
 ## Goal
 
 This collection is intended for learning and practicing common DSA patterns in C++.
