@@ -85,3 +85,23 @@ int main() {
 
     return 0;
 }
+
+/*
+Time Complexity: O(V + E)
+
+Reason:
+- Building adjacency list → O(E)
+- Calculating indegree → O(E)
+- BFS (each vertex and edge processed once) → O(V + E)
+
+Overall: O(V + E)
+
+Space Complexity: O(V + E)
+
+Reason:
+- Adjacency list → O(V + E)
+- Indegree array → O(V)
+- Queue → O(V)
+
+Overall: O(V + E)
+*/
