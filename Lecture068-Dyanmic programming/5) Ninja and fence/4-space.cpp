@@ -12,13 +12,19 @@ long long int mul(long long int a, long long int b) {
 }
 
 long long int solve(int n, int k) {
-   vector<long long int>dp(n+1, 0);
-   dp[1] = k;
-   dp[2] = add(k,mul(k,k-1));
+   if(n==1) return k;
+   if(n == 2) return add(k,mul(k,k-1));
+
+   long long int prev2 = k;
+   long long int prev1 = add(k,mul(k,k-1));
+
    for(int i = 3; i<=n; i++){
-    dp[i] = add(mul(dp[i-2], k-1), mul(dp[i-1], k-1));
+    long long int curr = add(mul(prev2, k-1), mul(prev1, k-1));
+    prev2 = prev1;
+    prev1 = curr;
    }
-   return dp[n];
+   return prev1;
+
 }
 
 long long int numberOfWays(int n, int k) {
