@@ -1,36 +1,31 @@
-#include<iostream> 
+#include <iostream>
 using namespace std;
 
 void sayDigit(int n, string arr[]) {
+    // base case
+    if (n == 0)
+        return;
 
-    //base case
-    if(n == 0)
-        return ;
-
-    //processing 
+    // extract last digit
     int digit = n % 10;
     n = n / 10;
-    
 
-    //recursive call
+    // recursive call first (to print left to right)
     sayDigit(n, arr);
 
+    // print after returning
     cout << arr[digit] << " ";
-
 }
 
 int main() {
-
-    string arr[10] = {"zero", "one", "two", "three",
-                         "four", "five", "six"
-                        , "seven", "eight", "nine"};
+    string arr[10] = {"zero", "one", "two", "three", "four",
+                      "five", "six", "seven", "eight", "nine"};
     int n;
+    cout << "Enter number: ";
     cin >> n;
 
-    cout << endl << endl << endl ;
     sayDigit(n, arr);
-    cout << endl << endl << endl ;
-
+    cout << endl;
 
     return 0;
 }

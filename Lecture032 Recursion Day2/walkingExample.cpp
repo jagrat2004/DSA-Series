@@ -18,6 +18,24 @@ void reachHome(int src, int dest) {
 
 }
 
+void reach(int src, int dest){
+    cout << "source " << src  << " destination " << dest << endl;
+
+    //base case
+    if(src == dest){
+        cout << "reached" << endl;
+        return;
+    }
+    
+    //processing - move one step 
+    src++;
+    
+    //recursive call
+    reach(src,dest);
+}
+
+
+
 int main() {
 
     int dest = 5;
@@ -25,7 +43,7 @@ int main() {
 
     cout << endl;
 
-    reachHome(src, dest);
+    reach(src, dest);
 
 
     return 0;
