@@ -45,8 +45,8 @@ void countLeaves(node* root, int &count) {
 
 int NoofLeafNodes(node* root) {
     int count = 0;
-    countLeaves(root, count);    // Fix 5: was calling inorder (undefined), now countLeaves
-    return count;                // Fix 6: was returning cnt (undeclared), now count
+    countLeaves(root, count);    
+    return count;                
 }
 
 int main() {
