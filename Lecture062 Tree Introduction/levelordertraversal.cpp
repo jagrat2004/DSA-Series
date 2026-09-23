@@ -15,43 +15,51 @@ public:
     }
 };
 
-// Manually build the required tree
-node* buildTree() {
-    node* root = new node(1);
-    root->left = new node(2);
-    root->right = new node(3);
-    root->left->left = new node(4);
-    root->left->right = new node(5);
-    root->right->right = new node(6);
+node* buildTree(node* root){
+    cout<<"enter the data"<<endl;
+    int data;
+    cin>>data;
+    root = new node(data);
+    if(data == -1){
+        return nullptr;
+    }
+    cout<<"enter data for inserting in left"<<endl;
+    root->left = buildTree(root->left);
+    cout<<"enter data for inserting in right"<<endl;
+    root->right = buildTree(root->right);
     return root;
+
 }
 
 void levelOrderTraversal(node* root) {
-    if (!root) return;
+    queue<node*> q;          // create a queue to hold node pointers
+    q.push(root);            // push root node as first element
+    q.push(nullptr);         // push NULL as level separator/marker
 
-    queue<node*> q;
-    q.push(root);
-    q.push(nullptr);
+    while(!q.empty()) {                  // keep going until queue is empty
+        node* temp = q.front();          // peek at front element
+        q.pop();                         // remove it from queue
 
-    while (!q.empty()) {
-        node* temp = q.front();
-        q.pop();
-
-        if (temp == nullptr) {
-            cout << endl;
-            if (!q.empty()) {
-                q.push(nullptr);
+        if(temp == nullptr) {            // if we hit level separator
+            cout << endl;                // print newline = current level done
+            if(!q.empty()) {             // if more nodes still exist
+                q.push(nullptr);         // push new separator for next level
             }
-        } else {
-            cout << temp->data << " ";
-            if (temp->left) q.push(temp->left);
-            if (temp->right) q.push(temp->right);
+        }
+        else {                                  // if its a valid node
+            cout << temp->data << " ";          // print node value
+            if(temp->left) {                    // if left child exists
+                q.push(temp->left);             // add left child to queue
+            }
+            if(temp->right) {                   // if right child exists
+                q.push(temp->right);            // add right child to queue
+            }
         }
     }
 }
 
 int main() {
-    node* root = buildTree();
+    node* root = buildTree(root);
     cout << "Level Order Traversal:" << endl;
     levelOrderTraversal(root);
     return 0;
